@@ -28,6 +28,25 @@ const Dashboard=props=>
       .then((data) => console.log(data));
   }, []);
 
+
+ function UnusedVariableComponent() {
+  const unusedVariable = 'hello';
+  return <Text>Hello</Text>;
+}
+
+function InconsistentNamingComponent() {
+  return <Text>Hello</Text>;
+}
+
+function MissingErrorHandlingComponent() {
+  fetch('https://api.example.com/data')
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+  // Missing error handling
+  return <Text>Hello</Text>;
+}
+
+
   // Insecure storage
   const storeCredentials = async () => {
     await SecureStorage.setItem('username', UserName[0]);
