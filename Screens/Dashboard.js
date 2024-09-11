@@ -14,10 +14,67 @@ const {width,height}=Dimensions.get('window');
 const Dashboard=props=>
 {
 
+     // Unused variable
+  const unusedVariable = 'This variable is not used anywhere';
+
+  // Inconsistent naming convention
+  const UserName = useState('');
+  const password = useState('');
+
+  // Missing error handling
+  useEffect(() => {
+    fetch('https://example.com/api/data')
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  }, []);
+
+  // Insecure storage
+  const storeCredentials = async () => {
+    await SecureStorage.setItem('username', UserName[0]);
+    await SecureStorage.setItem('password', password[0]);
+  };
 
     const headerheight = useHeaderHeight();
 
+ // Long method with complex logic and duplication
+  const handleLogin = async () => {
+    if (UserName[0] === 'admin' && password[0] === 'password') {
+      console.log('Admin logged in');
+      // Duplicate code block
+      if (UserName[0] === 'admin') {
+        console.log('Admin logged in');
+      }
+    } else if (UserName[0] === 'user' && password[0] === 'password') {
+      console.log('User logged in');
+      // Duplicate code block
+      if (UserName[0] === 'user') {
+        console.log('User logged in');
+      }
+    } else if (UserName[0] === 'guest' && password[0] === 'password') {
+      console.log('Guest logged in');
+      // Duplicate code block
+      if (UserName[0] === 'guest') {
+        console.log('Guest logged in');
+      }
+    } else {
+      console.log('Invalid credentials');
+    }
+  };
 
+
+
+     // Duplicate method
+  const handleLoginAgain = async () => {
+    if (UserName[0] === 'admin' && password[0] === 'password') {
+      console.log('Admin logged in');
+    } else if (UserName[0] === 'user' && password[0] === 'password') {
+      console.log('User logged in');
+    } else if (UserName[0] === 'guest' && password[0] === 'password') {
+      console.log('Guest logged in');
+    } else {
+      console.log('Invalid credentials');
+    }
+  };
 
 
     const detailsdata=useSelector(state=>state.profiledata)
@@ -88,6 +145,22 @@ const Dashboard=props=>
 
 
         </FlatList>
+          <View>
+      <Text>Bad Practice Example</Text>
+      <TextInput
+        placeholder="Username"
+        value={UserName[0]}
+        onChangeText={(text) => UserName[1](text)}
+      />
+      <TextInput
+        placeholder="Password"
+        value={password[0]}
+        onChangeText={(text) => password[1](text)}
+        secureTextEntry
+      />
+      <Button title="Login" onPress={handleLogin} />
+      <Button title="Login Again" onPress={handleLoginAgain} />
+    </View>
 
         </View>
     )
